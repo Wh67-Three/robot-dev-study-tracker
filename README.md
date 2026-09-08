@@ -1,8 +1,38 @@
 # robot-dev-study-tracker
 
-机器人开发工具学习计划跟踪器。
+机器人开发工具学习计划跟踪器：把 C++ 软开工具链学习拆成 9/8-10/17 的每日任务，用来记录视频进度、动作完成情况、必答问题和复习队列。
 
-## 打开方式
+## 网页版
 
-- [网页版直接打开](https://htmlpreview.github.io/?https://github.com/Wh67-Three/robot-dev-study-tracker/blob/main/index.html)
-- [下载 index.html 到本地打开](https://github.com/Wh67-Three/robot-dev-study-tracker/raw/main/index.html)
+[打开学习进度页面](https://wh67-three.github.io/robot-dev-study-tracker/)
+
+源码文件：[index.html](https://github.com/Wh67-Three/robot-dev-study-tracker/blob/main/index.html)
+
+## 功能
+
+- 按周展示每日学习计划，可搜索、筛选并展开/收起任务
+- 视频任务显示实际讲次范围，例如 `Linux 1.7-2.6`、`CMake 15-16`
+- 每个视频任务都附带教程名称、分P编号和 B 站分P链接
+- 可勾选视频/目标/动作完成情况，记录实际学习时长
+- 可写下必答问题答案，并标记“复习”
+- 提供复习队列、学习热力图和 C++ 核心能力自检
+- 支持导出/导入进度 JSON，也支持一键重置本地记录
+
+## 数据说明
+
+- 所有勾选、回答和学习记录保存在浏览器 `localStorage`，不会上传到服务器
+- 清空浏览器数据或点击页面中的“重置”会删除本地记录
+- 页面本身是单文件应用，数据全部由浏览器本地管理
+
+## 文件结构
+
+```text
+index.html  单文件学习进度应用
+README.md   项目说明
+```
+
+## 当前计划范围
+
+- 日期：2026-09-08 至 2026-10-17
+- 学习日：每周一至周六，周日休息
+- 视频范围：Linux、CMake、Git、GDB、C++ 面向对象和 VS Code/CMake 综合教程
