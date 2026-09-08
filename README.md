@@ -4,5 +4,5 @@
 
 ## 打开方式
 
-- [打开学习进度跟踪页面](https://github.com/Wh67-Three/robot-dev-study-tracker/blob/main/index.html)
+- [网页版直接打开](https://htmlpreview.github.io/?https://github.com/Wh67-Three/robot-dev-study-tracker/blob/main/index.html)
 - [下载 index.html 到本地打开](https://github.com/Wh67-Three/robot-dev-study-tracker/raw/main/index.html)
