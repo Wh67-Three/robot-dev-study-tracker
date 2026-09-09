@@ -484,6 +484,21 @@
         复习队列 <span class="count-badge" id="reviewCount">0</span>
       </button>
       <input id="searchInput" type="search" placeholder="搜索日期、视频、目标或问题">
+
+      <button class="icon-button" id="todayButton" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+        </svg>
+        跳到今天
+      </button>
+      <button class="icon-button" id="prevDayButton" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        前一天
+      </button>
+      <button class="icon-button" id="nextDayButton" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+        下一天
+      </button>
       <button class="icon-button" id="expandAll" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="m7 14 5-5 5 5"></path>
@@ -546,43 +561,41 @@
       { id: "ros2", name: "ROS2 节点、话题、服务" }
     ];
 
-    const plan = [
-      { week: 1, weekName: "第一周：工具链跑通", weekGoal: "能独立完成 CMake 构建、Git 提交、gdb 定位崩溃", date: "9/8", day: "周一", hours: "6.5h", video: "Linux 1.7-2.6", goal: "掌握 Linux 目录、路径、文件类型、权限和基础命令。", actions: ["在 ~/linux-lab 练习 cd、ls、mkdir、touch、pwd、which", "练习 chmod 和 ls -l", "完成绝对路径与相对路径练习"], questions: ["绝对路径与相对路径分别适合什么场景？", "chmod 754 对 owner、group、other 分别赋予什么权限？", "软链接和硬链接的区别是什么？"] },
-      { week: 1, date: "9/9", day: "周二", hours: "4.5h", video: "CMake 1-4；C++ OOP 1", goal: "掌握 CMake 基础、C++ 多态和第一次 Git 提交。", actions: ["创建 cmake_demo，完成构建和运行", "完成 polymorphism.cpp", "初始化 Git 并完成首次提交"], questions: ["cmake -S . -B build 中的 -S 和 -B 是什么？", "基类指针调用派生类函数需要满足什么条件？", "虚析构函数为什么重要？"] },
-      { week: 1, date: "9/10", day: "周三", hours: "6.5h", video: "Linux 2.7-3.5", goal: "掌握文件管理、用户管理和 Git 基本概念。", actions: ["练习创建、复制、移动、查看、软硬链接", "创建和删除测试用户", "练习 >、>> 和管道"], questions: ["mv 和 cp 的区别是什么？", "用户、用户组和文件权限是什么关系？", "Git 为什么需要工作区、暂存区和版本库？"] },
-      { week: 1, date: "9/11", day: "周四", hours: "6h", video: "Git 1-9", goal: "掌握 Git 基本操作和 GDB 快速上手。", actions: ["完成 Git 配置、克隆、提交、查看状态和日志", "写一个会崩溃的程序，用 gdb 运行并查看调用栈"], questions: ["git add 和 git commit 分别做了什么？", "git status 显示哪些状态？", "gdb 的 run 和 bt 分别起什么作用？"] },
-      { week: 1, date: "9/12", day: "周五", hours: "7h", video: "Linux 4.1-5.6；GDB 01-03", goal: "掌握 Linux 搜索和压缩命令，以及 GDB 快速上手。", actions: ["练习 tar、zip", "练习 find 和 grep", "写一个崩溃程序并用 gdb 定位"], questions: ["如何创建并解压一个 tar 包？", "find 和 grep 分别搜索什么？", "gdb 的 break 和 print 分别起什么作用？"] },
-      { week: 1, date: "9/13", day: "周六", hours: "6h", video: "Linux 6.1-6.15", goal: "掌握 vim 并完成第一周综合验收。", actions: ["用 vim 修改源码和 CMake 文件", "练习保存退出、查找替换、分屏和跳到指定行", "完成一个 CLI 小项目：CMake 构建、Git 提交、gdb 调试"], questions: ["vim 的命令模式、插入模式、末行模式分别做什么？", "如何用 vim 搜索并替换文本？", "用一段话完整说出从源码到可执行程序的流程。"] },
-      { week: 2, weekName: "第二周：Linux 工程能力", weekGoal: "能搭建多目录 C++ 工程并完成 VS Code 调试", date: "9/14", day: "周一", hours: "6.5h", video: "Linux 7.1-7.6；GDB 04-05", goal: "掌握 gcc/g++ 和 GDB 变量观察。", actions: ["用 g++ 编译程序并对比 -g、-O0、-Wall", "练习 gdb 的 print、step 和 watchpoint"], questions: ["gcc 编译流程分为哪几个阶段？", "-g 和 -O0 分别起什么作用？", "print 和 watchpoint 有什么区别？"] },
-      { week: 2, date: "9/15", day: "周二", hours: "4.5h", video: "Linux 8.1-8.7", goal: "掌握静态库和动态库。", actions: ["制作 .a 和 .so", "分别链接两种库", "排查动态库链接失败问题"], questions: ["静态库和动态库在运行时有什么不同？", "动态库搜索路径如何设置？", "静态库和动态库各有什么优缺点？"] },
-      { week: 2, date: "9/16", day: "周三", hours: "6.5h", video: "Linux 9.1-9.10；GDB 06-07", goal: "掌握 Makefile 和 gdb 进阶。", actions: ["编写基础 Makefile，加入变量和模式匹配", "调试 core 文件和运行中的程序"], questions: ["Makefile 的 target、dependency、command 是什么？", "如何调试 core 文件？", "如何用 gdb 调试运行中的程序？"] },
-      { week: 2, date: "9/17", day: "周四", hours: "6h", video: "CMake 5-10", goal: "掌握 CMake 搜索、头文件和库。", actions: ["练习 CMake 的 set、搜索文件、头文件路径和库", "完成一个多源文件 CMake 工程"], questions: ["CMake 如何搜索源文件？", "target_include_directories 的作用是什么？", "静态库和动态库在链接时有什么不同？"] },
-      { week: 2, date: "9/18", day: "周五", hours: "7h", video: "综合 第1-5集", goal: "巩固 Linux 目录、文件和编辑操作。", actions: ["在 ~/linux-lab 完成目录、文件移动复制和编辑练习", "练习 man 和 --help"], questions: ["ls -l 输出的每一段含义是什么？", "如何查看文件末尾新增内容？", "如何查找命令帮助？"] },
-      { week: 2, date: "9/19", day: "周六", hours: "6h", video: "综合 第6-11集", goal: "掌握编译过程和命令行调试。", actions: ["用 g++ 手动编译多文件程序", "完成命令行 gdb 调试", "完成一个库加可执行程序的小工程"], questions: ["预处理、编译、汇编、链接分别发生什么？", "-Wall 和 -Wextra 的作用是什么？", "如何在命令行 gdb 中单步调试？"] },
-      { week: 3, weekName: "第三周：机器人 C++ 核心", weekGoal: "能讲清内存、RAII、STL、线程同步，并写出最小程序", date: "9/21", day: "周一", hours: "6.5h", video: "CMake 11-14", goal: "掌握 CMake 日志、字符串、list 和宏，并补强内存管理。", actions: ["练习 CMake message、字符串和 list", "写 vector_growth.cpp", "写 smart_ptr.cpp，观察循环引用"], questions: ["CMake message 有哪些等级？", "vector 的 size 和 capacity 有什么区别？", "weak_ptr 如何打破循环引用？"] },
-      { week: 3, date: "9/22", day: "周二", hours: "4.5h", video: "Linux 10.1-10.10", goal: "补充 gdb 基础，并补强面向对象。", actions: ["练习 gdb 断点、单步和变量查看", "写多态、虚继承和菱形继承代码"], questions: ["虚函数表存的是什么？", "哪些情况下不会发生多态？", "gdb 的条件断点如何使用？"] },
-      { week: 3, date: "9/23", day: "周三", hours: "6.5h", video: "Git 10-14", goal: "掌握远程仓库和 Git 分支，并补强 STL。", actions: ["配置远程仓库和 SSH", "练习分支创建、切换、合并和冲突解决", "练习 vector、list、map、unordered_map"], questions: ["Git 合并冲突如何产生并解决？", "map 和 unordered_map 的实现原理有什么区别？", "如何安全删除 map 中的元素？"] },
-      { week: 3, date: "9/24", day: "周四", hours: "6h", video: "C++ OOP 1；GDB 01-03（复习）", goal: "复习 C++ 多态和 gdb，并补强现代 C++。", actions: ["重看虚函数和多态", "重看 GDB 快速入门", "练习右值引用、move、lambda"], questions: ["什么时候移动构造比拷贝更有效？", "lambda 的捕获方式有哪些？", "gdb 的 run、bt、print 分别起什么作用？"] },
-      { week: 3, date: "9/25", day: "周五", hours: "7h", video: "综合 第12-15集", goal: "掌握 VS Code 开发调试，并补强 C++ 并发。", actions: ["配置 tasks.json 和 launch.json", "练习 std::thread、互斥锁、条件变量", "实现一个最小线程池"], questions: ["tasks.json 和 launch.json 分别负责什么？", "互斥锁和条件变量的职责有什么不同？", "如何避免死锁？"] },
-      { week: 3, date: "9/26", day: "周六", hours: "6h", video: "综合 第16-19集", goal: "掌握 CMake 多文件实战，并完成 C++ 小项目。", actions: ["构建多目录 C++ 工程", "完成一个多生产者、多消费者任务队列"], questions: ["任务队列为什么需要锁？", "程序退出时如何处理未完成任务？", "如何让 CMake 找到第三方库？"] },
-      { week: 4, weekName: "第四周：Linux 系统编程与网络", weekGoal: "能实现多客户端 echo server", date: "9/28", day: "周一", hours: "6.5h", video: "Linux 1.1-1.6；综合 第20-21集", goal: "补完 Linux 基础概念，并掌握进程与信号。", actions: ["了解 Linux 历史、内核和发行版", "学习综合教程的项目目录结构", "练习 fork、exec、wait、信号处理"], questions: ["Linux 内核和发行版是什么关系？", "fork 为什么会返回两次？", "SIGCHLD 一般如何处理？"] },
-      { week: 4, date: "9/29", day: "周二", hours: "4.5h", video: "CMake 15-16", goal: "掌握嵌套 CMake，并掌握文件 I/O 与管道。", actions: ["搭建嵌套 CMake 工程", "练习 read、write、pipe、dup2"], questions: ["嵌套 CMake 如何组织？", "文件描述符是什么？", "管道如何实现进程通信？"] },
-      { week: 4, date: "9/30", day: "周三", hours: "6.5h", video: "CMake 17-18；GDB 04-05（复习）", goal: "掌握库与库链接，并掌握线程同步。", actions: ["练习静态库和动态库互相链接", "练习互斥锁、条件变量、读写锁", "写一个可复现死锁的小程序"], questions: ["条件变量为什么要和互斥锁一起使用？", "什么是丢失唤醒？", "如何发现死锁？"] },
-      { week: 4, date: "10/1", day: "周四", hours: "2h", video: "综合 第22-23集", goal: "学习项目编译规则，建立 TCP 基本概念。", actions: ["学习 CMake 项目编译规则和 json 配置", "画出 TCP 服务端调用流程", "写最小客户端连接测试"], questions: ["socket 返回什么？", "TCP 和 UDP 的主要区别是什么？", "服务端为何需要 listen 和 accept？"] },
-      { week: 4, date: "10/2", day: "周五", hours: "2h", video: "综合 第24集；C++ OOP 1（复习）", goal: "完成综合教程收尾，并完成 TCP 服务端骨架。", actions: ["看综合教程总结", "复习 C++ 多态", "写 socket、bind、listen、accept 最小服务端"], questions: ["bind 的作用是什么？", "accept 在什么时候返回？", "虚函数和普通函数调用有什么区别？"] },
-      { week: 4, date: "10/3", day: "周六", hours: "5h", video: "CMake 19-21", goal: "完成 CMake 综合案例，并完成 epoll 与 echo server。", actions: ["看 CMake 综合案例", "练习 epoll 事件循环", "完成多客户端 echo server"], questions: ["epoll 与 select/poll 的区别是什么？", "水平触发和边缘触发有什么不同？", "从 accept 到返回数据的完整流程是什么？"] },
-      { week: 5, weekName: "第五周：项目一", weekGoal: "项目一完成 v1.0，能通过压测", date: "10/5", day: "周一", hours: "5h", video: "综合 第20-24集（复习）", goal: "复习项目目录结构，完成项目设计和骨架。", actions: ["写需求、模块划分和目录结构", "完成初始 CMakeLists.txt"], questions: ["项目有哪些核心模块？", "为什么先搭骨架再写功能？", "如何组织项目目录和测试代码？"] },
-      { week: 5, date: "10/6", day: "周二", hours: "5h", video: "GDB 04-05（复习）", goal: "复习变量观察，实现线程池。", actions: ["复习 print、step、watchpoint", "实现任务队列和固定数量 worker", "实现优雅退出"], questions: ["如何避免任务队列竞争？", "worker 如何等待任务？", "watchpoint 适合观察什么？"] },
-      { week: 5, date: "10/7", day: "周三", hours: "5h", video: "Linux 10.1-10.10（复习）", goal: "复习 gdb，实现 epoll 主循环。", actions: ["复习断点、单步、条件断点", "实现监听、accept 和非阻塞连接"], questions: ["哪些事件需要监听？", "为什么使用非阻塞 socket？", "连接如何加入或退出 epoll？"] },
-      { week: 5, date: "10/8", day: "周四", hours: "6h", video: "综合 第16-19集（复习）", goal: "复习 CMake，实现协议和日志。", actions: ["复习 CMake 指令和工程组织", "定义消息边界和缓冲区", "实现日志等级和输出"], questions: ["TCP 为什么是字节流？", "如何解析完整消息？", "CMake 中如何组织多目录工程？"] },
-      { week: 5, date: "10/9", day: "周五", hours: "7h", video: "Linux 8.1-8.7（复习）", goal: "复习静态库/动态库，完成客户端和压测。", actions: ["复习静态库和动态库", "写测试客户端", "完成压力测试和错误注入"], questions: ["如何验证并发数量？", "如何发现文件描述符泄漏？", "动态库链接失败如何排查？"] },
-      { week: 5, date: "10/10", day: "周六", hours: "6h", video: "Git 13-14（复习）", goal: "复习 Git 分支，完成修复并发布 v1.0。", actions: ["复习分支和提交", "用 gdb 和 ASan 修复问题", "完成 v1.0 提交"], questions: ["ASan 能发现哪些错误？", "如何定位内存泄漏？", "项目 v1.0 的验收标准是什么？"] },
-      { week: 6, weekName: "第六周：收尾与机器人方向衔接", weekGoal: "能讲清项目，完成 ROS2 最小 demo，并制定项目二计划", date: "10/12", day: "周一", hours: "6.5h", video: "综合 第20-24集（复习）", goal: "复习完整工程目录，完成项目复盘和文档。", actions: ["复习项目目录结构和调试配置", "写 README、架构图和压测结果"], questions: ["用三句话介绍项目。", "项目最大的技术难点是什么？", "如果连接数增加十倍，哪里会先成为瓶颈？"] },
-      { week: 6, date: "10/13", day: "周二", hours: "4.5h", video: "C++ OOP 1（复习）", goal: "复习 C++ 核心，完成面试重点复习。", actions: ["复习继承、多态和虚函数", "口头回答 C++、Linux、并发和网络问题"], questions: ["RAII 解决什么问题？", "epoll 为什么高效？", "虚析构函数为什么重要？"] },
-      { week: 6, date: "10/14", day: "周三", hours: "6.5h", video: "Linux 7.1-7.6（复习）", goal: "复习编译流程，掌握 ROS2 基本概念。", actions: ["复习 gcc/g++ 编译流程", "学习 ROS2 节点、话题、服务、Action"], questions: ["topic 和 service 的区别是什么？", "node 如何发现其他 node？", "Action 适合什么场景？"] },
-      { week: 6, date: "10/15", day: "周四", hours: "6h", video: "CMake 7-10（复习）", goal: "复习 CMake 库，完成 ROS2 最小程序。", actions: ["复习 CMake 制作和链接库", "写 C++ publisher/subscriber demo"], questions: ["publisher 和 subscriber 如何建立连接？", "QoS 影响什么？", "ROS2 包如何使用 CMake 构建？"] },
-      { week: 6, date: "10/16", day: "周五", hours: "7h", video: "综合 第16-19集（复习）", goal: "复习 CMake 工程，完成简历和项目收尾。", actions: ["复习 CMake 多文件工程", "写简历项目描述", "整理 ROS2 demo 和项目二方向"], questions: ["项目一的三个简历要点是什么？", "如何用一句话说明工具链能力？", "项目二要解决什么机器人任务？"] },
-      { week: 6, date: "10/17", day: "周六", hours: "6h", video: "GDB 01-03（复习）", goal: "复习 gdb 基础，完成最终自测和下阶段计划。", actions: ["重看 GDB 快速入门", "重做六周中卡住的练习", "制定 10/18 后的 ROS2 项目二计划"], questions: ["六个工具是否都能独立使用？", "项目一能否不看稿讲清楚？", "10/18 后如何继续学习 ROS2 项目二？"] }
+        const plan = [
+      {"week":1,"weekName":"第1周：9/9-9/12：C++ 基础 + Linux 命令","weekGoal":"9/9-9/12：C++ 基础 + Linux 命令","date":"9/9","day":"周三","hours":"6.5h","video":"C++：C++ 第1集：5分钟讲透C++指针；第2集：5分钟讲透C++数组；工具：Linux 1.7-2.6，即目录功能介绍到文件其他属性","goal":"完成：`~/linux-lab` 路径与目录练习；写指针/数组 demo","actions":["`~/linux-lab` 路径与目录练习","写指针/数组 demo"],"questions":["指针和数组的关系","绝对/相对路径"]},
+      {"week":1,"weekName":"第1周：9/9-9/12：C++ 基础 + Linux 命令","weekGoal":"9/9-9/12：C++ 基础 + Linux 命令","date":"9/10","day":"周四","hours":"6h","video":"C++：C++ 第3集：5分钟讲透C++引用（基础）；第4集：5分钟讲透C++const；工具：Linux 2.7-2.17，即目录创建到重定向","goal":"完成：文件、权限、重定向练习；写引用/const demo","actions":["文件、权限、重定向练习","写引用/const demo"],"questions":["引用和指针区别","chmod 754"]},
+      {"week":1,"weekName":"第1周：9/9-9/12：C++ 基础 + Linux 命令","weekGoal":"9/9-9/12：C++ 基础 + Linux 命令","date":"9/11","day":"周五","hours":"7h","video":"C++：C++ 第5集：5分钟讲透C++多级指针与泛型指针；第6集：5分钟讲透C++函数与函数指针；工具：Git 1-9，即前言之版本控制到 Git 基本操作","goal":"完成：Git 首次提交；函数指针 demo","actions":["Git 首次提交","函数指针 demo"],"questions":["Git 工作区/暂存区/仓库","函数指针调用"]},
+      {"week":1,"weekName":"第1周：9/9-9/12：C++ 基础 + Linux 命令","weekGoal":"9/9-9/12：C++ 基础 + Linux 命令","date":"9/12","day":"周六","hours":"6h","video":"C++：C++ 第7集：5分钟讲透C++的static；第8集：5分钟讲透C++的堆空间；工具：Linux 3.1-5.6，即用户管理到 locate 搜索","goal":"完成：用户、压缩、find/grep；写 static/堆 demo","actions":["用户、压缩、find/grep","写 static/堆 demo"],"questions":["static 生命周期","new/malloc 与堆"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/14","day":"周一","hours":"6.5h","video":"C++：C++ 第9集：5分钟讲透C++类型说明符与隐式声明行为；第10集：5分钟讲透C++面相对象之属性、方法；工具：Linux 6.1-6.15，即 vim 安装到 vim 配置","goal":"完成：用 vim 写 C++；vim 查找替换","actions":["用 vim 写 C++","vim 查找替换"],"questions":["vim 保存退出","成员属性/方法"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/15","day":"周二","hours":"4.5h","video":"C++：C++ 第11集：5分钟讲透C++变量的初始化；第12集：C++面向对象之对象的初始化；工具：CMake 1-4，即 CMake概述到 set 使用下","goal":"完成：首个 CMake 工程；初始化 demo","actions":["首个 CMake 工程","初始化 demo"],"questions":["初始化方式区别","cmake -S -B"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/16","day":"周三","hours":"6.5h","video":"C++：C++ 第13集：C++面向对象之对象生命周期与析构；第14集：C++面向对象之成员权限与封装；工具：Linux 7.1-7.6，即 gcc 安装到 gcc/g++ 区别；GDB 01-03","goal":"完成：gcc/g++ 练习；gdb 跑崩溃程序","actions":["gcc/g++ 练习","gdb 跑崩溃程序"],"questions":["析构时机","gdb bt"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/17","day":"周四","hours":"6h","video":"C++：C++ 第15集：C++的const引用；第16集：C++面向对象之对象复制；第17集：C++面向对象之运算符重载(上)；工具：GDB 04-07，即 print&step 到调试运行中程序","goal":"完成：深拷贝；print/step/watch/core","actions":["深拷贝","print/step/watch/core"],"questions":["深拷贝","gdb core"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/18","day":"周五","hours":"7h","video":"C++：C++ 第18集：C++面向对象之运算符重载(下)；第19集：C++面向对象之对象的赋值；第20集：C++字符串与自定义字面量；工具：Linux 8.1-8.7，即静态库/动态库","goal":"完成：制作 .a/.so；写赋值与字符串 demo","actions":["制作 .a/.so","写赋值与字符串 demo"],"questions":["静态/动态库","自赋值"]},
+      {"week":2,"weekName":"第2周：9/14-9/19：面向对象 + Linux 工程","weekGoal":"9/14-9/19：面向对象 + Linux 工程","date":"9/19","day":"周六","hours":"6h","video":"C++：C++ 第21集：C++值类型；第22集：C++右值引用与移动语义；第23集：C++面向对象之继承、多态与虚函数；工具：Linux 9.1-9.10，即 Makefile 入门到伪目标","goal":"完成：Makefile；move 和虚函数 demo","actions":["Makefile","move 和虚函数 demo"],"questions":["移动语义","虚函数表"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/21","day":"周一","hours":"6.5h","video":"C++：C++ 第24集：协议类、多继承与动态转换；第25集：空类成员压缩与私有继承；第26集：C++模板基础；工具：CMake 5-10，即搜索文件到链接动态库下","goal":"完成：多继承/dynamic_cast；CMake 库","actions":["多继承/dynamic_cast","CMake 库"],"questions":["dynamic_cast","CMake 库链接"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/22","day":"周二","hours":"4.5h","video":"C++：C++ 第27集：C++知识答疑专场（一）；第28集：C++模板函数与模板全局常量；工具：Git 10-14，即码云到 Git 后续操作","goal":"完成：Git 远程/分支；模板函数","actions":["Git 远程/分支","模板函数"],"questions":["模板实例化","分支冲突"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/23","day":"周三","hours":"6.5h","video":"C++：C++ 第29集：C++模板类与类型萃取；第30集：C++模板元编程之SFINAE；工具：CMake 11-14，即日志到自定义宏","goal":"完成：模板类；CMake list/字符串","actions":["模板类","CMake list/字符串"],"questions":["SFINAE","类型萃取"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/24","day":"周四","hours":"6h","video":"C++：C++ 第31集：变参模板；第32集：折叠表达式；第33集：模板类型限定与萃取；工具：CMake 15-18，即嵌套 CMake 到静态库链接动态库","goal":"完成：变参模板；嵌套 CMake","actions":["变参模板","嵌套 CMake"],"questions":["变参包展开","嵌套工程"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/25","day":"周五","hours":"7h","video":"C++：C++ 第34集：模板元编程之完美转发；第35集：C++20之concept（上）；工具：CMake 19-21，即综合举例与更正","goal":"完成：完美转发；CMake 综合案例","actions":["完美转发","CMake 综合案例"],"questions":["forward","concept"]},
+      {"week":3,"weekName":"第3周：9/21-9/26：模板与函数对象","weekGoal":"9/21-9/26：模板与函数对象","date":"9/26","day":"周六","hours":"6h","video":"C++：C++ 第36集：C++20之concept（下）；第37集：仿函数与lambda；第38集：lambda捕获列表（上）；工具：综合 01-05，即课程简介到文件编辑","goal":"完成：concept/lambda；Linux 命令综合","actions":["concept/lambda","Linux 命令综合"],"questions":["lambda 捕获","concept"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"9/28","day":"周一","hours":"6.5h","video":"C++：C++ 第39集：lambda捕获列表（下）；第40集：函数对象（一）；第41集：函数对象（二）；工具：综合 06-11，即环境搭建到命令行调试","goal":"完成：函数对象；命令行 gdb","actions":["函数对象","命令行 gdb"],"questions":["函数对象与函数指针"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"9/29","day":"周二","hours":"4.5h","video":"C++：C++ 第42集：函数对象（三）；第43集：函数对象（四）；工具：综合 12-15，即 VS Code 界面到实战项目","goal":"完成：VS Code 调试；函数对象","actions":["VS Code 调试","函数对象"],"questions":["tasks/launch json"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"9/30","day":"周三","hours":"6.5h","video":"C++：C++ 第44集：函数对象（五）；第45集：ODR违规问题；工具：综合 16-19，即 CMake 指令到 CMake 实战","goal":"完成：多文件 CMake；ODR 检查","actions":["多文件 CMake","ODR 检查"],"questions":["ODR","重复定义"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"10/1","day":"周四","hours":"6h","video":"C++：C++ 第46集：对象模型（一）；工具：Linux 1.1-1.6，即概述到虚拟机","goal":"完成：对象布局复习","actions":["对象布局复习"],"questions":["Linux 内核与发行版"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"10/2","day":"周五","hours":"7h","video":"C++：C++ 第47集：对象模型（二）；工具：Linux 10.1-10.10，即 gdb 准备到条件断点","goal":"完成：gdb 补充；对象模型","actions":["gdb 补充","对象模型"],"questions":["gdb 条件断点"]},
+      {"week":4,"weekName":"第4周：9/28-10/3：对象模型与 STL 前奏","weekGoal":"9/28-10/3：对象模型与 STL 前奏","date":"10/3","day":"周六","hours":"6h","video":"C++：C++ 第48集：对象模型（三）；第49集：STL（一）整体认识STL；工具：综合 20-21，即合理设置项目目录、编写项目源文件","goal":"完成：工程目录；STL 概览","actions":["工程目录","STL 概览"],"questions":["STL 六大组件"]},
+      {"week":5,"weekName":"第5周：10/5-10/9：STL 重点与工具收尾","weekGoal":"10/5-10/9：STL 重点与工具收尾","date":"10/5","day":"周一","hours":"6.5h","video":"C++：C++ 第50集：STL（二）vector；第51集：STL（三）元素处理；工具：综合 22-24，即构建 CMake 项目、配置 json、课程总结","goal":"完成：VS Code 调试工程；vector/erase","actions":["VS Code 调试工程","vector/erase"],"questions":["capacity 策略","安全删除"]},
+      {"week":5,"weekName":"第5周：10/5-10/9：STL 重点与工具收尾","weekGoal":"10/5-10/9：STL 重点与工具收尾","date":"10/6","day":"周二","hours":"4.5h","video":"C++：C++ 第52集：STL（四）迭代器；第53集：STL（五）辅助迭代器","goal":"完成：迭代器失效案例","actions":["迭代器失效案例"],"questions":["back_inserter"]},
+      {"week":5,"weekName":"第5周：10/5-10/9：STL 重点与工具收尾","weekGoal":"10/5-10/9：STL 重点与工具收尾","date":"10/7","day":"周三","hours":"6.5h","video":"C++：C++ 第54集：STL（六）内存分配器；第55集：STL（七）综合应用（一）","goal":"完成：分配器；STL 综合小练习","actions":["分配器","STL 综合小练习"],"questions":["分配器默认行为"]},
+      {"week":5,"weekName":"第5周：10/5-10/9：STL 重点与工具收尾","weekGoal":"10/5-10/9：STL 重点与工具收尾","date":"10/8","day":"周四","hours":"6h","video":"C++：C++ 第56集：STL（八）综合应用（二）；第57集：STL（九）综合应用（三）","goal":"完成：STL 综合练习；项目需求梳理","actions":["STL 综合练习","项目需求梳理"],"questions":["容器选型"]},
+      {"week":5,"weekName":"第5周：10/5-10/9：STL 重点与工具收尾","weekGoal":"10/5-10/9：STL 重点与工具收尾","date":"10/9","day":"周五","hours":"7h","video":"C++：C++ 第58集：STL（十）综合应用（四）+阶段性总结","goal":"完成：58 集笔记整理；工具链自测","actions":["58 集笔记整理","工具链自测"],"questions":["58 集能否整体复述"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/10","day":"周六","hours":"6h","video":"复习：C++ 第23集：继承、多态与虚函数；GDB 01-03","goal":"完成：项目一搭骨架","actions":["项目一搭骨架"],"questions":["项目模块划分"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/12","day":"周一","hours":"6.5h","video":"复习：C++ 第49集：STL 整体认识；第50集：vector","goal":"完成：任务队列与线程池","actions":["任务队列与线程池"],"questions":["任务队列锁"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/13","day":"周二","hours":"4.5h","video":"复习：C++ 第52集：迭代器","goal":"完成：epoll 连接管理","actions":["epoll 连接管理"],"questions":["epoll 与连接"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/14","day":"周三","hours":"6.5h","video":"复习：C++ 第37-38集：lambda","goal":"完成：协议、缓冲区、日志","actions":["协议、缓冲区、日志"],"questions":["回调与缓冲区"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/15","day":"周四","hours":"6h","video":"复习：CMake 15-18：嵌套 CMake","goal":"完成：压测、客户端、异常处理","actions":["压测、客户端、异常处理"],"questions":["fd 泄漏","并发测试"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/16","day":"周五","hours":"7h","video":"复习：综合 20-24：工程目录与调试","goal":"完成：gdb/ASan 修复与 README","actions":["gdb/ASan 修复与 README"],"questions":["ASan","工程目录"]},
+      {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/17","day":"周六","hours":"6h","video":"复习：全教程查漏补缺","goal":"完成：项目一 v1.0 自测","actions":["项目一 v1.0 自测"],"questions":["交付标准"]}
     ];
 
     const videoCourses = {
@@ -656,7 +669,6 @@
       "10/16": [{ course: "integrated", range: "16-19", topic: "跨平台与 CMake 代码实践（复习）" }],
       "10/17": [{ course: "gdb", range: "1-3", topic: "GDB quickstart（复习）" }]
     };
-
     const skills = loadSkills();
     const state = loadState();
     const list = document.getElementById("planList");
@@ -683,6 +695,19 @@
     weekFilter.addEventListener("change", render);
     statusFilter.addEventListener("change", render);
     reviewButton.addEventListener("click", () => reviewPanel.classList.toggle("hidden"));
+    document.getElementById("todayButton").addEventListener("click", () => {
+      const targetDate = getTodayDateKey();
+      const target = state.find(item => item.date === targetDate);
+      openItem(target ? target.date : state[0].date);
+    });
+    document.getElementById("prevDayButton").addEventListener("click", () => navigateDay(-1));
+    document.getElementById("nextDayButton").addEventListener("click", () => navigateDay(1));
+    document.addEventListener("keydown", event => {
+      const tag = (event.target.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      if (event.key === "ArrowLeft") navigateDay(-1);
+      if (event.key === "ArrowRight") navigateDay(1);
+    });
 
     function loadState() {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
@@ -691,7 +716,7 @@
         return {
           ...item,
           videoMeta: videoMetaByDate[item.date] || [],
-          open: typeof old.open === "boolean" ? old.open : item.date === "9/8",
+          open: typeof old.open === "boolean" ? old.open : item.date === getTodayDateKey(),
           videoDone: !!old.videoDone,
           goalDone: !!old.goalDone,
           actualMinutes: Number(old.actualMinutes) || 0,
@@ -1077,8 +1102,23 @@
       return getStatus(item) === "done";
     }
 
+
+    function navigateDay(offset) {
+      if (!state.length) return;
+      let index = state.findIndex(item => item.date === getTodayDateKey());
+      if (index < 0) index = state.findIndex(item => item.open);
+      if (index < 0) index = 0;
+      const target = (index + offset + state.length) % state.length;
+      openItem(state[target].date);
+    }
+
+    function getTodayDateKey() {
+      const now = new Date();
+      return `${now.getMonth() + 1}/${now.getDate()}`;
+    }
+
     function isNextDay(item) {
-      return item.date === "9/8";
+      return item.date === getTodayDateKey();
     }
 
     function setAllOpen(open) {
