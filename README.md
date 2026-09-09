@@ -6,7 +6,6 @@
 
 [打开学习进度页面](https://wh67-three.github.io/robot-dev-study-tracker/)
 
-源码文件：[index.html](https://github.com/Wh67-Three/robot-dev-study-tracker/blob/main/index.html)
 
 ## 功能
 
