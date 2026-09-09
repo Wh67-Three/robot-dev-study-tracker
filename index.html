@@ -598,76 +598,51 @@
       {"week":6,"weekName":"第6周：10/10-10/17：项目与复习","weekGoal":"10/10-10/17：项目与复习","date":"10/17","day":"周六","hours":"6h","video":"复习：全教程查漏补缺","goal":"完成：项目一 v1.0 自测","actions":["项目一 v1.0 自测"],"questions":["交付标准"]}
     ];
 
-    const videoCourses = {
+        const videoCourses = {
       linux: { name: "Linux 基础入门教程", url: "https://www.bilibili.com/video/BV13U4y1p7kB" },
       cmake: { name: "CMake 保姆级教程", url: "https://www.bilibili.com/video/BV14s4y1g7Zj" },
       git: { name: "Git 最新教程通俗易懂", url: "https://www.bilibili.com/video/BV1FE411P7B3" },
       gdb: { name: "小神仙讲 GDB", url: "https://www.bilibili.com/video/BV1EK411g7Li" },
       cppOop: { name: "C++面向对象之继承、多态与虚函数", url: "https://www.bilibili.com/video/BV1rLiFeJEpT" },
-      integrated: { name: "基于VSCode和CMake实现C/C++开发与调试", url: "https://www.bilibili.com/video/BV1fy4y1b7TC" }
+      integrated: { name: "基于VSCode和CMake实现C/C++开发与调试", url: "https://www.bilibili.com/video/BV1fy4y1b7TC" },
+      cppv6: { name: "C++基础知识点（5分钟讲透C++）", url: "https://www.bilibili.com/video/BV1nE421T7kv" }
     };
 
-    const videoMetaByDate = {
-      "9/8": [{ course: "linux", range: "7-17", topic: "1.7 目录功能介绍 → 2.6 文件属性信息" }],
-      "9/9": [
-        { course: "cmake", range: "1-4", topic: "CMake 概述 → set 使用" },
-        { course: "cppOop", range: "1-1", topic: "继承、多态与虚函数" }
-      ],
-      "9/10": [{ course: "linux", range: "18-33", topic: "2.7 目录创建删除 → 3.5 修改用户密码" }],
-      "9/11": [{ course: "git", range: "1-9", topic: "版本控制 → Git 基本操作命令" }],
-      "9/12": [
-        { course: "linux", range: "34-43", topic: "tar 压缩解压 → locate 搜索文件" },
-        { course: "gdb", range: "1-3", topic: "什么是 GDB → quickstart" }
-      ],
-      "9/13": [{ course: "linux", range: "44-58", topic: "vim 安装介绍 → vim 配置文件" }],
-      "9/14": [
-        { course: "linux", range: "59-64", topic: "gcc 安装与版本 → gcc/g++ 区别" },
-        { course: "gdb", range: "4-5", topic: "print/step → watchpoint" }
-      ],
-      "9/15": [{ course: "linux", range: "65-71", topic: "静态库/动态库扫盲 → 优缺点" }],
-      "9/16": [
-        { course: "linux", range: "72-81", topic: "Makefile 介绍 → 伪目标声明" },
-        { course: "gdb", range: "6-7", topic: "core 文件调试 → 运行中程序调试" }
-      ],
-      "9/17": [{ course: "cmake", range: "5-10", topic: "搜索文件 → 链接动态库" }],
-      "9/18": [{ course: "integrated", range: "1-5", topic: "课程简介 → 文件编辑" }],
-      "9/19": [{ course: "integrated", range: "6-11", topic: "开发环境搭建 → 命令行调试" }],
-      "9/21": [{ course: "cmake", range: "11-14", topic: "打印日志 → 自定义宏" }],
-      "9/22": [{ course: "linux", range: "82-91", topic: "gdb 准备 → set var 与条件断点" }],
-      "9/23": [{ course: "git", range: "10-14", topic: "码云使用 → Git 后续操作" }],
-      "9/24": [
-        { course: "cppOop", range: "1-1", topic: "继承、多态与虚函数（复习）" },
-        { course: "gdb", range: "1-3", topic: "GDB quickstart（复习）" }
-      ],
-      "9/25": [{ course: "integrated", range: "12-15", topic: "VS Code 界面 → 小项目实战" }],
-      "9/26": [{ course: "integrated", range: "16-19", topic: "跨平台与语法特性 → CMake 代码实践" }],
-      "9/28": [
-        { course: "linux", range: "1-6", topic: "知识点概述 → 虚拟机" },
-        { course: "integrated", range: "20-21", topic: "项目目录设置 → 编写源文件" }
-      ],
-      "9/29": [{ course: "cmake", range: "15-16", topic: "嵌套 CMake" }],
-      "9/30": [
-        { course: "cmake", range: "17-18", topic: "静态库/动态库互相链接" },
-        { course: "gdb", range: "4-5", topic: "print/step/watchpoint（复习）" }
-      ],
-      "10/1": [{ course: "integrated", range: "22-23", topic: "构建编译规则与 json 调试" }],
-      "10/2": [
-        { course: "integrated", range: "24-24", topic: "课程总结与资料获取" },
-        { course: "cppOop", range: "1-1", topic: "继承、多态与虚函数（复习）" }
-      ],
-      "10/3": [{ course: "cmake", range: "19-21", topic: "综合案例与更正" }],
-      "10/5": [{ course: "integrated", range: "20-24", topic: "项目目录到课程总结（复习）" }],
-      "10/6": [{ course: "gdb", range: "4-5", topic: "print/step/watchpoint（复习）" }],
-      "10/7": [{ course: "linux", range: "82-91", topic: "gdb 准备到条件断点（复习）" }],
-      "10/8": [{ course: "integrated", range: "16-19", topic: "跨平台与 CMake 代码实践（复习）" }],
-      "10/9": [{ course: "linux", range: "65-71", topic: "静态库/动态库（复习）" }],
-      "10/10": [{ course: "git", range: "13-14", topic: "分支说明 → Git 后续操作" }],
-      "10/12": [{ course: "integrated", range: "20-24", topic: "项目目录到课程总结（复习）" }],
-      "10/13": [{ course: "cppOop", range: "1-1", topic: "继承、多态与虚函数（复习）" }],
-      "10/14": [{ course: "linux", range: "59-64", topic: "gcc/g++ 编译（复习）" }],
-      "10/15": [{ course: "cmake", range: "7-10", topic: "制作库文件 → 链接动态库（复习）" }],
-      "10/16": [{ course: "integrated", range: "16-19", topic: "跨平台与 CMake 代码实践（复习）" }],
-      "10/17": [{ course: "gdb", range: "1-3", topic: "GDB quickstart（复习）" }]
+        const videoMetaByDate = {
+      "9/9": [{"course":"cppv6","display":"第1集","topic":"5分钟讲透C++指针","url":"https://www.bilibili.com/video/BV1nE421T7kv"},{"course":"cppv6","display":"第2集","topic":"5分钟讲透C++数组","url":"https://www.bilibili.com/video/BV1Ww4m1U7NT"},{"course":"linux","range":"7-17","display":"1.7-2.6","topic":"目录功能介绍 → 文件其他属性"}],
+      "9/10": [{"course":"cppv6","display":"第3集","topic":"5分钟讲透C++引用（基础）","url":"https://www.bilibili.com/video/BV1Br421g7U2"},{"course":"cppv6","display":"第4集","topic":"5分钟讲透C++const","url":"https://www.bilibili.com/video/BV1Ww4m1y7Lv"},{"course":"linux","range":"18-28","display":"2.7-2.17","topic":"目录的创建和删除 → 重定向操作"}],
+      "9/11": [{"course":"cppv6","display":"第5集","topic":"5分钟讲透C++多级指针与泛型指针","url":"https://www.bilibili.com/video/BV1vb421h79W"},{"course":"cppv6","display":"第6集","topic":"5分钟讲透C++函数与函数指针","url":"https://www.bilibili.com/video/BV1ZC411E7RK"},{"course":"git","range":"1-9","display":"1-9","topic":"前言之版本控制 → Git基本操作命令"}],
+      "9/12": [{"course":"cppv6","display":"第7集","topic":"5分钟讲透C++的static","url":"https://www.bilibili.com/video/BV19D421K7hv"},{"course":"cppv6","display":"第8集","topic":"5分钟讲透C++的堆空间（基础概念）","url":"https://www.bilibili.com/video/BV1qr421E7Au"},{"course":"linux","range":"29-43","display":"3.1-5.6","topic":"用户的切换 → 使用locate搜索文件"}],
+      "9/14": [{"course":"cppv6","display":"第9集","topic":"5分钟讲透C++类型说明符与隐式声明行为","url":"https://www.bilibili.com/video/BV16E421V7Vb"},{"course":"cppv6","display":"第10集","topic":"5分钟讲透C++面相对象之属性、方法","url":"https://www.bilibili.com/video/BV1EZ421j7b9"},{"course":"linux","range":"44-58","display":"6.1-6.15","topic":"vim的安装和介绍 → vim的配置文件"}],
+      "9/15": [{"course":"cppv6","display":"第11集","topic":"5分钟讲透C++变量的初始化","url":"https://www.bilibili.com/video/BV1Um421T7uZ"},{"course":"cppv6","display":"第12集","topic":"C++面向对象之对象的初始化","url":"https://www.bilibili.com/video/BV1eJ4m1P7ns"},{"course":"cmake","range":"1-4","display":"1-4","topic":"CMake概述 → CMake中set的使用（下）"}],
+      "9/16": [{"course":"cppv6","display":"第13集","topic":"C++面向对象之对象生命周期与析构","url":"https://www.bilibili.com/video/BV1rr4215748"},{"course":"cppv6","display":"第14集","topic":"C++面向对象之成员权限与封装","url":"https://www.bilibili.com/video/BV1Qb421v7BZ"},{"course":"linux","range":"59-64","display":"7.1-7.6","topic":"gcc的安装和版本查看 → gcc和g++的区别"},{"course":"gdb","range":"1-3","display":"01-03","topic":"什么是GDB → gdb quickstart"}],
+      "9/17": [{"course":"cppv6","display":"第15集","topic":"C++的const引用","url":"https://www.bilibili.com/video/BV1c442197xh"},{"course":"cppv6","display":"第16集","topic":"C++面向对象之对象复制","url":"https://www.bilibili.com/video/BV1Ws421g7G2"},{"course":"cppv6","display":"第17集","topic":"C++面向对象之运算符重载(上)","url":"https://www.bilibili.com/video/BV1VM4m1U7Sm"},{"course":"gdb","range":"4-7","display":"04-07","topic":"print & step → 调试运行中的程序"}],
+      "9/18": [{"course":"cppv6","display":"第18集","topic":"C++面向对象之运算符重载(下)","url":"https://www.bilibili.com/video/BV1os421T7zM"},{"course":"cppv6","display":"第19集","topic":"C++面向对象之对象的赋值","url":"https://www.bilibili.com/video/BV1sH4y1w7bQ"},{"course":"cppv6","display":"第20集","topic":"C++字符串与自定义字面量","url":"https://www.bilibili.com/video/BV16W421R7Ac"},{"course":"linux","range":"65-71","display":"8.1-8.7","topic":"动态库和静态库扫盲 → 优缺点"}],
+      "9/19": [{"course":"cppv6","display":"第21集","topic":"C++值类型","url":"https://www.bilibili.com/video/BV1Cw4m1r7oJ"},{"course":"cppv6","display":"第22集","topic":"C++右值引用与移动语义","url":"https://www.bilibili.com/video/BV1nr421K79S"},{"course":"cppv6","display":"第23集","topic":"C++面向对象之继承、多态与虚函数","url":"https://www.bilibili.com/video/BV1rLiFeJEpT"},{"course":"linux","range":"72-81","display":"9.1-9.10","topic":"makefile介绍 → 伪目标声明"}],
+      "9/21": [{"course":"cppv6","display":"第24集","topic":"C++面向对象之协议类、多继承与动态转换","url":"https://www.bilibili.com/video/BV11EY9eKEPh"},{"course":"cppv6","display":"第25集","topic":"C++面向对象之空类成员压缩与私有继承","url":"https://www.bilibili.com/video/BV1EmHve5EgV"},{"course":"cppv6","display":"第26集","topic":"C++模板基础","url":"https://www.bilibili.com/video/BV19CteeUEvh"},{"course":"cmake","range":"5-10","display":"5-10","topic":"搜索文件 → 在程序中链接动态库（下）"}],
+      "9/22": [{"course":"cppv6","display":"第27集","topic":"C++知识答疑专场（一）","url":"https://www.bilibili.com/video/BV1u51iYuENa"},{"course":"cppv6","display":"第28集","topic":"C++模板函数与模板全局常量","url":"https://www.bilibili.com/video/BV1mu1uYoEpx"},{"course":"git","range":"10-14","display":"10-14","topic":"码云的注册和使用 → Git后续操作说明"}],
+      "9/23": [{"course":"cppv6","display":"第29集","topic":"C++模板类与类型萃取","url":"https://www.bilibili.com/video/BV16zmrY5E4p"},{"course":"cppv6","display":"第30集","topic":"C++模板元编程之SFINAE","url":"https://www.bilibili.com/video/BV14UqHYgEKi"},{"course":"cmake","range":"11-14","display":"11-14","topic":"在cmake中打印日志信息 → 自定义宏"}],
+      "9/24": [{"course":"cppv6","display":"第31集","topic":"C++模板元编程之变参模板","url":"https://www.bilibili.com/video/BV1V5kHYwEYd"},{"course":"cppv6","display":"第32集","topic":"C++模板元编程之折叠表达式","url":"https://www.bilibili.com/video/BV13eCVYgEK5"},{"course":"cppv6","display":"第33集","topic":"C++模板的类型限定与萃取","url":"https://www.bilibili.com/video/BV1Ea6ZYBEQG"},{"course":"cmake","range":"15-18","display":"15-18","topic":"嵌套的CMake → 静态库中连接动态库"}],
+      "9/25": [{"course":"cppv6","display":"第34集","topic":"C++模板元编程之完美转发","url":"https://www.bilibili.com/video/BV19rrTYpEwP"},{"course":"cppv6","display":"第35集","topic":"C++20之concept（上）","url":"https://www.bilibili.com/video/BV1WaNDeQEFV"},{"course":"cmake","range":"19-21","display":"19-21","topic":"举例 → 更正"}],
+      "9/26": [{"course":"cppv6","display":"第36集","topic":"C++20之concept（下）","url":"https://www.bilibili.com/video/BV1X8A5e8ECA"},{"course":"cppv6","display":"第37集","topic":"C++基础知识-仿函数与lambda","url":"https://www.bilibili.com/video/BV1BgRsYyEMV"},{"course":"cppv6","display":"第38集","topic":"C++基础知识之lambda捕获列表（上）","url":"https://www.bilibili.com/video/BV1cDXxYJEZn"},{"course":"integrated","range":"1-5","display":"01-05","topic":"开篇课程简介 → 1.4 文件编辑"}],
+      "9/28": [{"course":"cppv6","display":"第39集","topic":"C++基础知识之lambda捕获列表（下）","url":"https://www.bilibili.com/video/BV1rFZrYTE18"},{"course":"cppv6","display":"第40集","topic":"C++基础知识之函数对象（一）","url":"https://www.bilibili.com/video/BV195d7YQEiB"},{"course":"cppv6","display":"第41集","topic":"C++基础知识之函数对象（二）","url":"https://www.bilibili.com/video/BV1Ef5bziExP"},{"course":"integrated","range":"6-11","display":"06-11","topic":"开发环境搭建 → 命令行调试"}],
+      "9/29": [{"course":"cppv6","display":"第42集","topic":"C++基础知识之函数对象（三）","url":"https://www.bilibili.com/video/BV12WLmzKEyR"},{"course":"cppv6","display":"第43集","topic":"C++基础知识之函数对象（四）","url":"https://www.bilibili.com/video/BV1kQEgzAE26"},{"course":"integrated","range":"12-15","display":"12-15","topic":"界面介绍 → 2个小项目实战"}],
+      "9/30": [{"course":"cppv6","display":"第44集","topic":"C++基础知识之函数对象（五）","url":"https://www.bilibili.com/video/BV1L7EbzuER9"},{"course":"cppv6","display":"第45集","topic":"C++基础知识之ODR违规问题","url":"https://www.bilibili.com/video/BV1Nyj8zXEBZ"},{"course":"integrated","range":"16-19","display":"16-19","topic":"跨平台与语法特性 → CMake代码实践"}],
+      "10/1": [{"course":"cppv6","display":"第46集","topic":"C++对象模型（一）","url":"https://www.bilibili.com/video/BV1A5MUz2Ene"},{"course":"linux","range":"1-6","display":"1.1-1.6","topic":"知识点概述 → 虚拟机"}],
+      "10/2": [{"course":"cppv6","display":"第47集","topic":"C++对象模型（二）","url":"https://www.bilibili.com/video/BV1D7KWzSEAc"},{"course":"linux","range":"82-91","display":"10.1-10.10","topic":"gdb的准备工作 → set var与条件断点"}],
+      "10/3": [{"course":"cppv6","display":"第48集","topic":"C++对象模型（三）","url":"https://www.bilibili.com/video/BV1vj3BzLEUN"},{"course":"cppv6","display":"第49集","topic":"STL（一）整体认识STL","url":"https://www.bilibili.com/video/BV1dYuozbEPf"},{"course":"integrated","range":"20-21","display":"20-21","topic":"合理设置项目目录 → 编写项目源文件"}],
+      "10/5": [{"course":"cppv6","display":"第50集","topic":"STL（二）vector","url":"https://www.bilibili.com/video/BV1bfhgzrEVD"},{"course":"cppv6","display":"第51集","topic":"STL（三）元素处理","url":"https://www.bilibili.com/video/BV1D9Y1zUEzy"},{"course":"integrated","range":"22-24","display":"22-24","topic":"构建项目编译规则 → 课程总结"}],
+      "10/6": [{"course":"cppv6","display":"第52集","topic":"STL（四）迭代器","url":"https://www.bilibili.com/video/BV19oYLzNEwq"},{"course":"cppv6","display":"第53集","topic":"STL（五）辅助迭代器","url":"https://www.bilibili.com/video/BV15f4Gz1E3s"}],
+      "10/7": [{"course":"cppv6","display":"第54集","topic":"STL（六）内存分配器","url":"https://www.bilibili.com/video/BV1dP1qB5EHF"},{"course":"cppv6","display":"第55集","topic":"STL（七）综合应用（一）","url":"https://www.bilibili.com/video/BV1WP6ZBTEUx"}],
+      "10/8": [{"course":"cppv6","display":"第56集","topic":"STL（八）综合应用（二）","url":"https://www.bilibili.com/video/BV1NtFTz7EkL"},{"course":"cppv6","display":"第57集","topic":"STL（九）综合应用（三）","url":"https://www.bilibili.com/video/BV1CHN3zvEGs"}],
+      "10/9": [{"course":"cppv6","display":"第58集","topic":"STL（十）综合应用（四）+阶段性总结+后期规划","url":"https://www.bilibili.com/video/BV1RxDABfE91"}],
+      "10/10": [{"course":"cppv6","display":"第23集","topic":"C++面向对象之继承、多态与虚函数","url":"https://www.bilibili.com/video/BV1rLiFeJEpT"},{"course":"gdb","range":"1-3","display":"01-03","topic":"GDB quickstart（复习）"}],
+      "10/12": [{"course":"cppv6","display":"第49集","topic":"STL（一）整体认识STL","url":"https://www.bilibili.com/video/BV1dYuozbEPf"},{"course":"cppv6","display":"第50集","topic":"STL（二）vector","url":"https://www.bilibili.com/video/BV1bfhgzrEVD"}],
+      "10/13": [{"course":"cppv6","display":"第52集","topic":"STL（四）迭代器","url":"https://www.bilibili.com/video/BV19oYLzNEwq"}],
+      "10/14": [{"course":"cppv6","display":"第37集","topic":"C++基础知识-仿函数与lambda","url":"https://www.bilibili.com/video/BV1BgRsYyEMV"},{"course":"cppv6","display":"第38集","topic":"C++基础知识之lambda捕获列表（上）","url":"https://www.bilibili.com/video/BV1cDXxYJEZn"}],
+      "10/15": [{"course":"cmake","range":"15-18","display":"15-18","topic":"嵌套的CMake → 静态库中连接动态库（复习）"}],
+      "10/16": [{"course":"integrated","range":"20-24","display":"20-24","topic":"合理设置项目目录 → 课程总结（复习）"}],
+      "10/17": []
     };
     const skills = loadSkills();
     const state = loadState();
@@ -940,19 +915,24 @@
       return card;
     }
 
-    function renderVideoLinks(item) {
+        function renderVideoLinks(item) {
       const metas = item.videoMeta || [];
       return `<div class="video-links">${metas.map(meta => {
-        const course = videoCourses[meta.course];
-        const parts = String(meta.range).split("-");
-        const startPart = Number(parts[0]);
-        const endPart = Number(parts[1] || parts[0]);
-        const rangeText = startPart === endPart ? `第 ${startPart} 集` : `第 ${startPart}-${endPart} 集`;
-        const href = `${course.url}?p=${startPart}`;
-        return `<a class="video-link" href="${href}" target="_blank" rel="noopener" title="${course.name} ${rangeText}">
+        const course = videoCourses[meta.course] || { name: meta.courseName || "视频教程", url: "" };
+        let href = meta.url || "";
+        let rangeText = meta.display || "";
+        if (!href && course.url) {
+          const parts = String(meta.range || "").split("-");
+          const startPart = Number(parts[0]) || 1;
+          const endPart = Number(parts[1] || parts[0]) || startPart;
+          href = `${course.url}?p=${startPart}`;
+          if (!rangeText) rangeText = startPart === endPart ? `第 ${startPart} 集` : `第 ${startPart}-${endPart} 集`;
+        }
+        const topic = meta.topic || meta.title || "";
+        return `<a class="video-link" href="${href}" target="_blank" rel="noopener" title="${course.name} ${rangeText} ${topic}">
           <span class="video-link-course">${course.name}</span>
           <span class="video-link-range">${rangeText}</span>
-          <span class="video-link-topic">${meta.topic}</span>
+          <span class="video-link-topic">${topic}</span>
           <span class="video-link-open">打开</span>
         </a>`;
       }).join("")}</div>`;
